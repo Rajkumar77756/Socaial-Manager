@@ -2,7 +2,10 @@ import { initializeApp, getApps, cert } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 import { getStorage } from "firebase-admin/storage";
 
-if (!getApps().length) {
+export function initAdmin() {
+  if (getApps().length > 0) return;
+  if (!process.env.FIREBASE_PROJECT_ID) return;
+  
   try {
     initializeApp({
       credential: cert({
@@ -17,7 +20,12 @@ if (!getApps().length) {
   }
 }
 
-const adminDb = getFirestore();
-const adminStorage = getStorage();
+export const getAdminDb = () => {
+  initAdmin();
+  return getFirestore();
+};
 
-export { adminDb, adminStorage };
+export const getAdminStorage = () => {
+  initAdmin();
+  return getStorage();
+};

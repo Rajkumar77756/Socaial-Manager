@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
-import { adminDb } from "@/lib/firebase-admin";
+import { getAdminDb } from "@/lib/firebase-admin";
 import { publishToInstagram } from "@/lib/instagram";
+
+export const dynamic = "force-dynamic";
 
 // This endpoint gets called by Vercel Cron every X minutes
 export async function GET(request) {
@@ -11,6 +13,7 @@ export async function GET(request) {
   }
 
   try {
+    const adminDb = getAdminDb();
     const now = new Date();
     // Fetch pending posts scheduled for the past/present
     const snapshot = await adminDb
