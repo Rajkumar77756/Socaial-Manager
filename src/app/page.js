@@ -4,7 +4,9 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { LogOut, Plus, RefreshCw, CalendarClock, Play } from "lucide-react";
 import UploadModal from "@/components/UploadModal";
+import AIGenerator from "@/components/AIGenerator";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -84,6 +86,8 @@ export default function Home() {
           </div>
         )}
       </div>
+
+      <AIGenerator />
 
       {showModal && (
         <UploadModal 
