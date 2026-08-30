@@ -18,13 +18,15 @@ export async function POST(req) {
     
     RULES:
     1. The first sentence MUST be a shocking or controversial hook.
-    2. Keep it conversational, fast-paced, and engaging.
+    2. Keep the script conversational, fast-paced, and engaging (like a human creator).
     3. Do not include any stage directions, emojis, or hashtags in the script text. Just the spoken words.
+    4. Write a 300-500 word SEO-optimized blog post on this same topic for a Blogger website. Use a highly engaging, human-like, non-robotic tone (use slang, emotion, formatting).
     
     Format your response as a strict JSON object with this shape:
     {
       "script": "The actual spoken text...",
       "caption": "A catchy caption for the post including 5 niche hashtags",
+      "blogPost": "The 300-500 word human-like blog post formatted in HTML (use <h2>, <p>, <strong> etc)",
       "imagePrompt": "A single sentence describing an image to use as the background (e.g., 'a futuristic gaming controller on a neon desk')"
     }
     

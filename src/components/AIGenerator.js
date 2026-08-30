@@ -102,7 +102,21 @@ export default function AIGenerator() {
         scheduledTime: new Date(Date.now() + 1000 * 60 * 60 * 24).toISOString(), // Tomorrow
       });
 
-      setStatus("Done! Video Scheduled.");
+      setStatus("Sending to YouTube & Blogger...");
+      // Fire webhook to Make.com via our secure backend API
+      await fetch("/api/webhook", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          topic,
+          videoUrl: downloadUrl,
+          caption: scriptData.caption,
+          blogPost: scriptData.blogPost,
+          timestamp: new Date().toISOString()
+        })
+      });
+
+      setStatus("Done! Video Scheduled & Distributed.");
       
     } catch (e) {
       console.error(e);
